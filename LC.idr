@@ -32,7 +32,7 @@ total idsub : (m : Nat) -> Sub m m
 idsub Z = E
 idsub (S n) = (V Top) :: (weakensub (idsub n))
 
-total subst : Sub m n -> Exp m -> Exp n
+subst : Sub m n -> Exp m -> Exp n
 subst s One = One
 subst s (Lam e) = Lam (subst (V Top :: weakensub s) e)
 subst s (App e1 e2) = App (subst s e1) (subst s e2)
@@ -42,7 +42,7 @@ subst s (V x) = app s x
     app (y :: s) Top = y
     app (y :: s) (Pop x) = app s x
 
-eval : Exp n -> Maybe (Exp n)
+total eval : Exp Z -> Maybe (Exp Z)
 eval (V x) = Just (V x)
 eval (Lam e) = Just (Lam e)
 eval One = Just One

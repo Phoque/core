@@ -8,10 +8,6 @@ data Var : Nat -> Type where
   Top : Var (S n)
   Pop : Var n -> Var (S n)
 
-same : Var n -> Var n -> Bool
-same v1 v2 = False
-
-
 data Exp : Nat -> Type where
   One : Exp n
   V : Var n -> Exp n
